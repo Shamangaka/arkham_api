@@ -4,6 +4,7 @@ const BASE_URL: &str = "https://arkhamdb.com/api/public/";
 
 #[tokio::main]
 pub async fn init() -> Result<(), Box<dyn std::error::Error>> {
+    // replace this for all cards after testing
     let url = format!("{}{}", BASE_URL, "card/01001");
     let response = reqwest::get(&url).await?;
 
