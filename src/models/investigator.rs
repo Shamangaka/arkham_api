@@ -1,4 +1,4 @@
-use serde_derive::{ Deserialize, Serialize};
+use serde_derive::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Investigator {
@@ -70,4 +70,3 @@ struct RandomRequirement {
     target: String,
     value: String,
 }
-

@@ -1,5 +1,6 @@
 mod api;
 mod models;
+mod service;
 
 use std::io;
 
@@ -24,11 +25,6 @@ fn main() {
 fn init() {
     println!("Initializing...");
 
-    // get full card list using the API
-    // match api::init() {
-    //     Ok(_) => println!("Initialized"),
-    //     Err(e) => println!("Error: {}", e),
-    // }
     api::init();
 }
 
