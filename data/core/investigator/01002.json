@@ -1,0 +1,87 @@
+{
+  "alternated_by": [
+    "01502",
+    "90001"
+  ],
+  "back_flavor": "As a respected librarian at Miskatonic University, Daisy had always felt that books were the most important thing in her life. She explored in fiction what she abhorred in life: horror, violence, fear. Then, she stumbled across the John Dee translation of the Necronomicon. It was blasphemous, unholy, and too awful to be read. But given her studies in obscure and occult subjects, Daisy knew there was more truth than fiction within the book's pages. She began to wonder what other secrets the restricted collection of the Orne Library held...",
+  "back_text": "<b>Deck Size</b>: 30.\n<b>Deckbuilding Options</b>: Seeker cards ([seeker]) level 0-5, Mystic cards ([mystic]) level 0-2, Neutral cards level 0-5.\n<b>Deckbuilding Requirements</b> (do not count toward deck size): Daisy’s Tote Bag, The Necronomicon (John Dee Translation), 1 random basic weakness.",
+  "backimagesrc": "/bundles/cards/01002b.png",
+  "code": "01002",
+  "deck_limit": 1,
+  "deck_options": [
+    {
+      "faction": [
+        "seeker",
+        "neutral"
+      ],
+      "level": {
+        "max": 5,
+        "min": 0
+      }
+    },
+    {
+      "faction": [
+        "mystic"
+      ],
+      "level": {
+        "max": 2,
+        "min": 0
+      }
+    }
+  ],
+  "deck_requirements": {
+    "card": {
+      "01009": {
+        "90003": "90003",
+        "01009": "01009"
+      },
+      "01008": {
+        "01008": "01008",
+        "90002": "90002"
+      }
+    },
+    "random": [
+      {
+        "target": "subtype",
+        "value": "basicweakness"
+      }
+    ],
+    "size": 30
+  },
+  "double_sided": true,
+  "duplicated_by": [
+    "01502"
+  ],
+  "exceptional": false,
+  "faction_code": "seeker",
+  "faction_name": "Seeker",
+  "flavor": "\"I know of books so powerful, they can rewrite reality.\"",
+  "health": 5,
+  "health_per_investigator": false,
+  "illustrator": "Magali Villeneuve",
+  "imagesrc": "/bundles/cards/01002.png",
+  "is_unique": true,
+  "myriad": false,
+  "name": "Daisy Walker",
+  "octgn_id": "53463cb2-2261-4d8b-b948-d8f7a926ed79:8c96b7d1-18b8-40eb-830c-47a85cd1180f",
+  "pack_code": "core",
+  "pack_name": "Core Set",
+  "permanent": false,
+  "position": 2,
+  "quantity": 1,
+  "real_name": "Daisy Walker",
+  "real_slot": "",
+  "real_text": "You may take an additional action during your turn, which can only be used on [[Tome]] [action] abilities.\n[elder_sign] effect: +0. If you succeed, draw 1 card for each [[Tome]] you control.",
+  "real_traits": "Miskatonic.",
+  "sanity": 9,
+  "skill_agility": 2,
+  "skill_combat": 2,
+  "skill_intellect": 5,
+  "skill_willpower": 3,
+  "subname": "The Librarian",
+  "text": "You may take an additional action during your turn, which can only be used on [[Tome]] [action] abilities.\n[elder_sign] effect: +0. If you succeed, draw 1 card for each [[Tome]] you control.",
+  "traits": "Miskatonic.",
+  "type_code": "investigator",
+  "type_name": "Investigator",
+  "url": "https://arkhamdb.com/card/01002"
+}
