@@ -16,7 +16,7 @@ fn main() {
 
     match input {
         "init" => init(),
-        "update" => println!("Updating..."),
+        "update" => update(),
         _ => println!("Invalid command"),
     }
 }
@@ -25,8 +25,13 @@ fn init() {
     println!("Initializing...");
 
     // get full card list using the API
-    let _cards = api::init();
+    match api::init() {
+        Ok(_) => println!("Initialized"),
+        Err(e) => println!("Error: {}", e),
+    }
+}
 
-    // print card list
-    println!("Card list: {:?}", _cards);
+fn update() {
+    println!("Update not implemented yet.");
+    // println!("Updating...");
 }
