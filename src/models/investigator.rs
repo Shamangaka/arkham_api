@@ -15,7 +15,7 @@ pub struct Investigator {
     exceptional: bool,
     faction_code: String,
     faction_name: String,
-    flavor: String,
+    flavor: Option<String>,
     health: i32,
     health_per_investigator: bool,
     illustrator: String,

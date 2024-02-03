@@ -25,10 +25,11 @@ fn init() {
     println!("Initializing...");
 
     // get full card list using the API
-    match api::init() {
-        Ok(_) => println!("Initialized"),
-        Err(e) => println!("Error: {}", e),
-    }
+    // match api::init() {
+    //     Ok(_) => println!("Initialized"),
+    //     Err(e) => println!("Error: {}", e),
+    // }
+    api::init();
 }
 
 fn update() {
