@@ -26,7 +26,7 @@ pub struct Treachery {
     pub traits: Option<String>,
     pub real_traits: Option<String>,
     pub restrictions: Option<Restrictions>,
-    pub illustrator: String,
+    pub illustrator: Option<String>,
     pub is_unique: bool,
     pub permanent: bool,
     pub double_sided: bool,

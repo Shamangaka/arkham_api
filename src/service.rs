@@ -84,6 +84,17 @@ impl CardHandler for InvestigatorHandler {
     }
 }
 
+struct KeyHandler;
+impl CardHandler for KeyHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let key: models::key::Key = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let key_value = key.to_string_pretty();
+        save_card_to_file(path, key_value?);
+        Ok(())
+    }
+}
+
 struct LocationHandler;
 impl CardHandler for LocationHandler {
     fn handle_card(&self, card: Value) -> Result<(), Error> {
@@ -117,6 +128,17 @@ impl CardHandler for SkillHandler {
     }
 }
 
+struct StoryHandler;
+impl CardHandler for StoryHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let story: models::story::Story = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let story_value = story.to_string_pretty();
+        save_card_to_file(path, story_value?);
+        Ok(())
+    }
+}
+
 struct TreacheryHandler;
 impl CardHandler for TreacheryHandler {
     fn handle_card(&self, card: Value) -> Result<(), Error> {
@@ -136,15 +158,18 @@ fn get_card_handler(type_code: &str) -> Box<dyn CardHandler> {
         "enemy" => Box::new(EnemyHandler {}),
         "event" => Box::new(EventHandler {}),
         "investigator" => Box::new(InvestigatorHandler {}),
+        "key" => Box::new(KeyHandler {}),
         "location" => Box::new(LocationHandler {}),
-        "treachery" => Box::new(TreacheryHandler {}),
         "scenario" => Box::new(ScenarioHandler {}),
         "skill" => Box::new(SkillHandler {}),
+        "story" => Box::new(StoryHandler {}),
+        "treachery" => Box::new(TreacheryHandler {}),
         _ => Box::new(DefaultHander),
     }
 }
 
 pub fn categorize_cards(resp: String) {
+    println!("Categorizing cards...");
     let json = serde_json::from_str(&resp).unwrap();
 
     if let Value::Array(cards) = json {
@@ -164,6 +189,7 @@ pub fn categorize_cards(resp: String) {
             };
         }
     }
+    println!("Categorizing complete");
 }
 
 fn create_card_file(card: Value) -> PathBuf {

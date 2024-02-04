@@ -20,7 +20,7 @@ pub struct Skill {
     pub skill_combat: Option<u32>,
     pub xp: Option<u32>,
     pub health_per_investigator: bool,
-    pub deck_limit: u32,
+    pub deck_limit: Option<u32>,
     pub real_slot: Option<String>,
     pub traits: String,
     pub real_traits: String,
@@ -29,9 +29,9 @@ pub struct Skill {
     pub is_unique: bool,
     pub permanent: bool,
     pub double_sided: bool,
-    pub octgn_id: String,
+    pub octgn_id: Option<String>,
     pub url: String,
-    pub imagesrc: String,
+    pub imagesrc: Option<String>,
     pub duplicated_by: Option<Vec<String>>,
 }
 

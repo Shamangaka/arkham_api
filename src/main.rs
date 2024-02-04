@@ -5,7 +5,7 @@ mod service;
 use std::io;
 
 fn main() {
-    println!("Enter a command <init|update>");
+    println!("Enter a command <init>");
 
     let mut input = String::new();
     io::stdin()
@@ -13,7 +13,6 @@ fn main() {
         .expect("Failed to read line");
 
     let input = input.trim();
-    println!("You entered: {}", input);
 
     match input {
         "init" => init(),
