@@ -1,4 +1,5 @@
 use serde::{Deserialize, Serialize};
+use serde_json::{json, Value};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct Act {
@@ -38,4 +39,10 @@ pub struct Act {
     pub type_name: String,
     pub url: String,
     pub clues: Option<u32>,
+}
+
+impl Act {
+    pub fn to_string_pretty(&self) -> serde_json::Result<String> {
+        serde_json::to_string_pretty(self)
+    }
 }

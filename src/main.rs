@@ -24,8 +24,10 @@ fn main() {
 
 fn init() {
     println!("Initializing...");
-
-    api::init();
+    match api::init() {
+        Ok(resp) => service::categorize_cards(resp),
+        Err(e) => println!("Error: {:?}", e),
+    }
 }
 
 fn update() {

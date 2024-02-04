@@ -1,5 +1,5 @@
-use crate::service;
-use serde_json;
+// use crate::service;
+// use serde_json;
 use std::fs;
 
 // const BASE_URL: &str = "https://arkhamdb.com/api/public/";
@@ -21,9 +21,8 @@ use std::fs;
 //     Ok(())
 // }
 
-pub fn init() {
-    let json = fs::read_to_string("core.json").expect("Unable to read core.json");
-    let json = serde_json::from_str(&json).expect("Unable to parse json");
+pub fn init() -> Result<String, Box<dyn std::error::Error>> {
+    let resp = fs::read_to_string("core.json").expect("Unable to read core.json");
 
-    service::categorize_cards(json);
+    Ok(resp)
 }
