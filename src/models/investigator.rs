@@ -70,3 +70,9 @@ struct RandomRequirement {
     target: String,
     value: String,
 }
+
+impl Investigator {
+    pub fn to_string_pretty(&self) -> serde_json::Result<String> {
+        serde_json::to_string_pretty(self)
+    }
+}

@@ -11,7 +11,7 @@ trait CardHandler {
 struct DefaultHander;
 impl CardHandler for DefaultHander {
     fn handle_card(&self, _card: Value) -> Result<(), Error> {
-        println!("Unknown card type");
+        println!("Unknown card type: {:?}", _card.get("type_code").unwrap());
         Ok(())
     }
 }
@@ -28,9 +28,118 @@ impl CardHandler for ActHandler {
     }
 }
 
+struct AgendaHandler;
+impl CardHandler for AgendaHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let agenda: models::agenda::Agenda = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let agenda_value = agenda.to_string_pretty();
+        save_card_to_file(path, agenda_value?);
+        Ok(())
+    }
+}
+
+struct AssetHandler;
+impl CardHandler for AssetHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let asset: models::asset::Asset = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let asset_value = asset.to_string_pretty();
+        save_card_to_file(path, asset_value?);
+        Ok(())
+    }
+}
+
+struct EnemyHandler;
+impl CardHandler for EnemyHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let enemy: models::enemy::Enemy = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let enemy_value = enemy.to_string_pretty();
+        save_card_to_file(path, enemy_value?);
+        Ok(())
+    }
+}
+
+struct EventHandler;
+impl CardHandler for EventHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let event: models::event::Event = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let event_value = event.to_string_pretty();
+        save_card_to_file(path, event_value?);
+        Ok(())
+    }
+}
+
+struct InvestigatorHandler;
+impl CardHandler for InvestigatorHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let investigator: models::investigator::Investigator =
+            serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let investigator_value = investigator.to_string_pretty();
+        save_card_to_file(path, investigator_value?);
+        Ok(())
+    }
+}
+
+struct LocationHandler;
+impl CardHandler for LocationHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let location: models::location::Location = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let location_value = location.to_string_pretty();
+        save_card_to_file(path, location_value?);
+        Ok(())
+    }
+}
+
+struct ScenarioHandler;
+impl CardHandler for ScenarioHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let scenario: models::scenario::Scenario = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let scenario_value = scenario.to_string_pretty();
+        save_card_to_file(path, scenario_value?);
+        Ok(())
+    }
+}
+
+struct SkillHandler;
+impl CardHandler for SkillHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let skill: models::skill::Skill = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let skill_value = skill.to_string_pretty();
+        save_card_to_file(path, skill_value?);
+        Ok(())
+    }
+}
+
+struct TreacheryHandler;
+impl CardHandler for TreacheryHandler {
+    fn handle_card(&self, card: Value) -> Result<(), Error> {
+        let treachery: models::treachery::Treachery = serde_json::from_value(card.clone())?;
+        let path = create_card_file(card);
+        let treachery_value = treachery.to_string_pretty();
+        save_card_to_file(path, treachery_value?);
+        Ok(())
+    }
+}
+
 fn get_card_handler(type_code: &str) -> Box<dyn CardHandler> {
     match type_code {
         "act" => Box::new(ActHandler {}),
+        "agenda" => Box::new(AgendaHandler {}),
+        "asset" => Box::new(AssetHandler {}),
+        "enemy" => Box::new(EnemyHandler {}),
+        "event" => Box::new(EventHandler {}),
+        "investigator" => Box::new(InvestigatorHandler {}),
+        "location" => Box::new(LocationHandler {}),
+        "treachery" => Box::new(TreacheryHandler {}),
+        "scenario" => Box::new(ScenarioHandler {}),
+        "skill" => Box::new(SkillHandler {}),
         _ => Box::new(DefaultHander),
     }
 }
@@ -41,10 +150,15 @@ pub fn categorize_cards(resp: String) {
     if let Value::Array(cards) = json {
         for card in cards {
             if let Some(type_code) = card.get("type_code").and_then(|tc| tc.as_str()) {
+                let code = card.get("code").and_then(|c| c.as_str()).unwrap();
                 let handler = get_card_handler(type_code);
-                match handler.handle_card(card) {
+                match handler.handle_card(card.clone()) {
                     Ok(_) => {}
-                    Err(e) => println!("Error handling card: {:?}", e),
+                    Err(e) => {
+                        println!("Handling card: {}", code);
+
+                        println!("Error handling card: {:?}", e);
+                    }
                 }
             };
         }
@@ -72,7 +186,7 @@ fn create_card_file(card: Value) -> PathBuf {
 
 fn save_card_to_file(path: PathBuf, contents: String) {
     match fs::write(path.clone(), contents) {
-        Ok(_) => println!("Wrote to {:?}", path),
+        Ok(_) => {}
         Err(e) => println!("Error writing to {:?}: {:?}", path, e),
     }
 }
