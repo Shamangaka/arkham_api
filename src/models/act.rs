@@ -37,7 +37,7 @@ pub struct Act {
     pub type_code: String,
     pub type_name: String,
     pub url: String,
-    pub clues: Option<u32>,
+    pub clues: Option<i32>,
 }
 
 impl Act {

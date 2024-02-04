@@ -156,6 +156,7 @@ pub fn categorize_cards(resp: String) {
                     Ok(_) => {}
                     Err(e) => {
                         println!("Handling card: {}", code);
+                        println!("Type code: {}", type_code);
 
                         println!("Error handling card: {:?}", e);
                     }

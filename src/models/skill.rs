@@ -18,10 +18,10 @@ pub struct Skill {
     pub real_text: String,
     pub quantity: u32,
     pub skill_combat: Option<u32>,
-    pub xp: u32,
+    pub xp: Option<u32>,
     pub health_per_investigator: bool,
     pub deck_limit: u32,
-    pub real_slot: String,
+    pub real_slot: Option<String>,
     pub traits: String,
     pub real_traits: String,
     pub flavor: Option<String>,
@@ -32,7 +32,7 @@ pub struct Skill {
     pub octgn_id: String,
     pub url: String,
     pub imagesrc: String,
-    pub duplicated_by: Vec<String>,
+    pub duplicated_by: Option<Vec<String>>,
 }
 
 impl Skill {

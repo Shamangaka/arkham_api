@@ -25,7 +25,7 @@ pub struct Event {
     pub skill_wild: Option<u32>,
     pub health_per_investigator: bool,
     pub deck_limit: u32,
-    pub real_slot: String,
+    pub real_slot: Option<String>,
     pub traits: String,
     pub real_traits: String,
     pub restrictions: Option<Restrictions>,
@@ -36,8 +36,8 @@ pub struct Event {
     pub double_sided: bool,
     pub octgn_id: String,
     pub url: String,
-    pub imagesrc: String,
-    pub duplicated_by: Vec<String>,
+    pub imagesrc: Option<String>,
+    pub duplicated_by: Option<Vec<String>>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]

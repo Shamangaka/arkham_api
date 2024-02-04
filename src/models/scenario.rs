@@ -21,16 +21,16 @@ pub struct Scenario {
     pub real_text: String,
     pub quantity: u32,
     pub health_per_investigator: bool,
-    pub real_slot: String,
+    pub real_slot: Option<String>,
     pub is_unique: bool,
     pub permanent: bool,
     pub double_sided: bool,
     pub back_text: String,
     pub octgn_id: String,
     pub url: String,
-    pub imagesrc: String,
+    pub imagesrc: Option<String>,
     pub spoiler: u32,
-    pub backimagesrc: String,
+    pub backimagesrc: Option<String>,
 }
 
 impl Scenario {

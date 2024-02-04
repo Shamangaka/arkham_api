@@ -22,7 +22,7 @@ pub struct Treachery {
     pub quantity: u32,
     pub health_per_investigator: bool,
     pub deck_limit: Option<u32>,
-    pub real_slot: String,
+    pub real_slot: Option<String>,
     pub traits: Option<String>,
     pub real_traits: Option<String>,
     pub restrictions: Option<Restrictions>,
@@ -30,9 +30,9 @@ pub struct Treachery {
     pub is_unique: bool,
     pub permanent: bool,
     pub double_sided: bool,
-    pub octgn_id: String,
+    pub octgn_id: Option<String>,
     pub url: String,
-    pub imagesrc: String,
+    pub imagesrc: Option<String>,
     pub duplicated_by: Option<Vec<String>>,
 }
 
