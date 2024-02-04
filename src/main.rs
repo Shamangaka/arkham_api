@@ -1,10 +1,11 @@
 mod api;
 mod models;
+mod service;
 
 use std::io;
 
 fn main() {
-    println!("Enter a command <init|update>");
+    println!("Enter a command <init>");
 
     let mut input = String::new();
     io::stdin()
@@ -12,7 +13,6 @@ fn main() {
         .expect("Failed to read line");
 
     let input = input.trim();
-    println!("You entered: {}", input);
 
     match input {
         "init" => init(),
@@ -23,13 +23,10 @@ fn main() {
 
 fn init() {
     println!("Initializing...");
-
-    // get full card list using the API
-    // match api::init() {
-    //     Ok(_) => println!("Initialized"),
-    //     Err(e) => println!("Error: {}", e),
-    // }
-    api::init();
+    match api::init() {
+        Ok(resp) => service::categorize_cards(resp),
+        Err(e) => println!("Error: {:?}", e),
+    }
 }
 
 fn update() {
